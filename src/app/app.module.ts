@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -13,6 +14,9 @@ import { CardCourseComponent } from './components/card-course/card-course.compon
 import { LearnComponent } from './components/learn/learn.component';
 import { CoursesService } from './services/courses.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+
 
 @NgModule({
   declarations: [
@@ -23,17 +27,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     ManageCourseComponent,
     CardCourseComponent,
     LearnComponent,
-    HomeComponent
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [
     CoursesService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

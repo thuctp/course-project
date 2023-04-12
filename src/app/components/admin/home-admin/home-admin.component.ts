@@ -6,7 +6,7 @@ import { Course, CoursesService } from 'src/app/services/courses.service';
   templateUrl: './home-admin.component.html',
   styleUrls: ['./home-admin.component.scss']
 })
-export class HomeAdminComponent {
+export class HomeAdminComponent{
   constructor( private coursesSevice: CoursesService){}
 
   listCourses : Course[] = [];
