@@ -1,0 +1,16 @@
+<div class="container py-5">
+
+  <div class="row">
+    <ng-container *ngFor="let course of (courseList$ | async); let i = index">
+      <div class="col-12 col-md-4 col-lg-3">
+        <app-card-course [index]="i" [courseDetails]="course"></app-card-course>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="mt-5">
+    <label class="form-label" for="testName">Name: </label>
+    <input class="form-control" id="testName" type="text" [formControl]="name">
+  </div>
+</div>
+

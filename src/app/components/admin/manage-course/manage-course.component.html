@@ -1,0 +1,40 @@
+<div class="container py-5">
+  <form [formGroup]="form" (ngSubmit)="addCourse()">
+    <div class="mb-3">
+      <label class="form-label">Course Name</label>
+      <input type="text" class="form-control" formControlName="name">
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" rows="3" formControlName="description"></textarea>
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Course Type</label>
+      <select class="form-select" formControlName="type">
+        <option selected>Open this select menu</option>
+        <option value="Free">Free</option>
+        <option value="Premium">Premium</option>
+      </select>
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" formControlName="price">
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Duration</label>
+      <input type="number" class="form-control" formControlName="duration">
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input type="text" class="form-control" formControlName="author">
+      <div class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
