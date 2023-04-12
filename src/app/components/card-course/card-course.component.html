@@ -1,1 +1,23 @@
-<p>card-course works!</p>
+<div class="card">
+  <img src="assets/images/default-thumbnail.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ courseDetails.name }}</h5>
+    <p class="card-text text-center">{{ courseDetails.description }}</p>
+    <div class="row">
+      <div class="col-6 text-center">
+        <p><b class="text-success">{{ courseDetails.type }}</b></p>
+      </div>
+      <div class="col-6">
+        <p><b>Price: ${{ courseDetails.price }}</b></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <!-- <button class="btn btn-primary w-100" (click)="buyCourse(id)">Buy Now</button> -->
+      </div>
+      <div class="col-6">
+        <button class="btn btn-primary w-100">Show Details</button>
+      </div>
+    </div>
+  </div>
+</div>
