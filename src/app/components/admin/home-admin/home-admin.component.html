@@ -1,41 +1,41 @@
 <div class="container py-5">
 
-  <div class="row mb-5">
-    <div class="col-6">
-      <button class="btn btn-primary" routerLink="/add-course">Add New Course</button>
+  <div class="row" *ngIf="!isEdit">
+    <div class="col-12 mb-5">
+      <button class="btn btn-primary" [routerLink]="['add-course']">Add New Course</button>
     </div>
-  </div>
 
-  <div class="row">
-    <ng-container *ngFor="let course of listCourses">
-      <div class="col-3">
-        <div class="card">
-          <img src="assets/images/default-thumbnail.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ course.name }}</h5>
-            <p class="card-text text-center">
-              {{ (course.description.length > 50) ? (course.description)+'...' : course.description}}
-            </p>
-            <div class="row">
-              <div class="col-6 text-center">
-                <p><b class="text-success">{{ course.type }}</b></p>
-              </div>
-              <div class="col-6">
-                <p><b>Price: ${{ course.price }}</b></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <button class="btn btn-primary w-100">Edit Course</button>
-              </div>
-              <div class="col-6">
-                <button class="btn btn-primary w-100">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Course Name</th>
+          <th>Description</th>
+          <th class="text-nowrap">Course Type</th>
+          <th class="text-end text-nowrap">Course Price</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of listCourses; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ course.name }}</td>
+          <td>{{ (course.description.length > 50) ? (course.description | slice:0:50 )+'...' : course.description}}</td>
+          <td>{{ course.type }}</td>
+          <td class="text-end">{{ course.price + "$"}}</td>
+          <td>
+
+            <button class="btn btn-primary w-100 mb-3" (click)="getIdEditCourse(course.id)">Edit Course</button>
+            <button class="btn btn-outline-primary w-100" (click)="getDeleteCourse(course.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
+
+  <app-edit-course *ngIf="isEdit" [itemCourse]="itemEdit"></app-edit-course>
+
 </div>
+
+<router-outlet></router-outlet>

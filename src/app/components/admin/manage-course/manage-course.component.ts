@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { CoursesService } from 'src/app/services/courses.service';
+
+import { v1 as uuidv1, v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-manage-course',
@@ -10,13 +13,24 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class ManageCourseComponent {
   listCourse: any[] = [];
 
-  form!: FormGroup;
+  // form!: FormGroup;
+  form = new FormGroup({
+    name: new FormControl(''),
+    author: new FormControl(''),
+    duration: new FormControl(),
+    type: new FormControl(''),
+    price: new FormControl(),
+    description: new FormControl(''),
+  });
 
   constructor(
     private coursersService: CoursesService,
     private fb: FormBuilder
   ){}
 
+  get isTypeDisabled(){
+    return this.form.get('type')?.value ==="Free";
+  }
 
   ngOnInit(){
 
@@ -27,9 +41,21 @@ export class ManageCourseComponent {
       author: ['Author', Validators.required],
       duration: [0, [Validators.required, Validators.min(1)]],
       type: ['Free', Validators.required],
-      price: [0, Validators.required],
+      price: [{value: 0, disabled: this.form.get('type')}, Validators.required],
       description: [""],
     })
+
+    this.form.get('type')?.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((val) => {
+        if(val === "Free"){
+          this.form.get("price")?.disable();
+          this.form.get("price")?.setValue(0);
+        }
+        else {
+          this.form.get("price")?.enable();
+        }
+      });
   }
 
   addCourse(){
@@ -38,7 +64,7 @@ export class ManageCourseComponent {
     }
 
     let addItemCourse = {
-      id: this.listCourse[this.listCourse.length-1].id+1,
+      id: uuidv1(),
       name: this.form.get('name')?.value,
       author: this.form.get('author')?.value,
       duration: this.form.get('duration')?.value,
@@ -49,4 +75,5 @@ export class ManageCourseComponent {
     this.coursersService.pushToProduct(addItemCourse);
 
   }
+
 }

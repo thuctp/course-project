@@ -13,10 +13,12 @@ import { ManageCourseComponent } from './components/admin/manage-course/manage-c
 import { CardCourseComponent } from './components/card-course/card-course.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { CoursesService } from './services/courses.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
-
+import { EditCourseComponent } from './components/admin/edit-course/edit-course.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,18 @@ import { HomeAdminComponent } from './components/admin/home-admin/home-admin.com
     ManageCourseComponent,
     CardCourseComponent,
     LearnComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    EditCourseComponent,
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     CoursesService

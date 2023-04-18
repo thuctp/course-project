@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 import { ManageCourseComponent } from './components/admin/manage-course/manage-course.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -14,14 +15,29 @@ const routes: Routes = [
     path: "learn",
     component: LearnComponent
   },
+  // {
+  //   path: "admin",
+  //   component: HomeAdminComponent
+  // },
   {
     path: "admin",
-    component: HomeAdminComponent
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: HomeAdminComponent,
+      },
+      {
+        path: 'add-course',
+        component: ManageCourseComponent
+      }
+
+    ],
   },
-  {
-    path: "add-course",
-    component: ManageCourseComponent
-  }
+  // {
+  //   path: "add-course",
+  //   component: ManageCourseComponent
+  // }
 ];
 
 @NgModule({
